@@ -9,17 +9,13 @@ def DecSkin(frame):
     B = np.array([20, 150, 250], dtype = "uint8")
     C = np.array([172, 45, 58], dtype = "uint8")
     D = np.array([179, 150, 250], dtype = "uint8")
-    
     Skin = cv2.inRange(Frme, A, B)
     SkinMask = cv2.inRange(Frme, C, D)
-    
     Skin = cv2.GaussianBlur(Skin, (3, 3), 0)
     SkinMask = cv2.GaussianBlur(SkinMask, (3, 3), 0)
-    
     Root = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (8, 8))
     HSV = cv2.dilate(Skin, Root)
     HSV_M = cv2.dilate(SkinMask, Root)
-    
     Skin1 = cv2.bitwise_and(frame, frame, mask = HSV)
     Skin2 = cv2.bitwise_and(frame, frame, mask = HSV_M)
     skin = cv2.bitwise_or(Skin1,Skin2) 
