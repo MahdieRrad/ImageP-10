@@ -2,7 +2,7 @@ import cv2
 import keyboard
 import numpy as np
 
-def skin_Detection(frame):
+def DecSkin(frame):
     Frme = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
     
     A = np.array([0, 45, 58], dtype = "uint8")
@@ -32,7 +32,7 @@ while True:
     if not S or keyboard.is_pressed('0'):
         break
     
-    Output = skin_Detection(F)
+    Output = DecSkin(F)
     cv2.imshow('Cam-0', Output)
     cv2.waitKey(1)
    
